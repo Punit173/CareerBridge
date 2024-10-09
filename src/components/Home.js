@@ -3,7 +3,8 @@ import { useDropzone } from "react-dropzone"; // Import useDropzone from react-d
 import Tesseract from "tesseract.js"; // Import Tesseract.js
 import "./Home.css";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-
+import axios from 'axios';
+//hello punit
 const Home = () => {
   const genAI = new GoogleGenerativeAI(
     "AIzaSyAgq0yvib3_NNgeliiaVeSJa8rN4deQUyo"
@@ -12,6 +13,7 @@ const Home = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [extractedText, setExtractedText] = useState(""); // State to hold extracted text
   const [isExtracting, setIsExtracting] = useState(false); // State to track extraction status
+  const [points,setpoints]=useState([]);
 
   useEffect(() => {
     localStorage.clear();
@@ -56,6 +58,46 @@ const Home = () => {
       });
   };
 
+
+
+
+
+
+  //this for connecting to python backend
+  useEffect(() => {
+    const sendPoints = async () => {
+      try {
+        const response = await axios.post(
+          'http://localhost:5000/extract-text',
+          { points }, // Send points array as JSON
+          {
+            headers: { 'Content-Type': 'application/json' },
+          }
+        );
+        console.log('Text extracted:', response.data);
+        console.log('Points sent:', points);
+      } catch (error) {
+        console.error('Error sending points:', error);
+      }
+    };
+  
+    if (points.length > 0) { // Ensure we only send if points are populated
+      sendPoints();
+    }
+  }, [points]);
+  
+  
+
+
+
+
+
+
+
+
+
+
+
   // useEffect to update localStorage when imagePreview changes
   useEffect(() => {
     if (imagePreview) {
@@ -67,7 +109,7 @@ const Home = () => {
 
   const generateContent = async () => {
     const prompt = `
-      give title of jobs which this resume can apply for (just only the keywords no desc no extra points nothing just keywords)
+      give the title of jobs which this resume can apply for (just only the keywords no desc no extra points nothing just keywords) any 5 don't give numbering only asteriks per point and no desc
       ${extractedText}
     `;
 
@@ -77,8 +119,10 @@ const Home = () => {
 
       // Split the response into lines and filter out empty lines
       const points = responseText
-        .split("-")
+        .split("*")
         .filter((line) => line.trim() !== "");
+
+      setpoints(points);
 
       // Update state with the list of keywords
       setExtractedText(points);
@@ -94,7 +138,7 @@ const Home = () => {
   return (
     <div className="container">
       <h1 className="h1_top">
-        <span className="parta">Career</span><span className="partb">Quest</span>
+        <span className="parta">Career</span><span className="partb">Bridge</span>
         
       </h1>
       <div className="content">
