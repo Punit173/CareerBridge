@@ -2,7 +2,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-content: center;
+    align-items: center;
     margin: 20px;
+    /* margin-top: 20vh; */
   }
   
   .job-card {
