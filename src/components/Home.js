@@ -133,10 +133,9 @@ const Home = () => {
         <span className="parta">Career</span><span className="partb">Bridge</span>
       </h1>
       <div className="content">
-        <div className="button-85">
+        <div className="button-85 adjheight">
           <h2>Image Uploader</h2>
           <br />
-          {/* Drag and Drop Area */}
           <div {...getRootProps({ className: "dropzone" })}>
             <input {...getInputProps()} />
             <p>Drag 'n' drop some files here, or click to select files</p>
@@ -148,7 +147,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="button-85">
+        <div className="button-85 adjheight">
           <h2>AI Summary</h2>
           <br />
           {Array.isArray(extractedText) && extractedText.length > 0 ? (

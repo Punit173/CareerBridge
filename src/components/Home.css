@@ -18,50 +18,26 @@
   
   /* Container for the main content */
   .container {
-    width: 100%;
+    width: 100%; 
     max-width: 1200px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    align-content: center;
   }
   
   /* Uploader and AI summary section */
   .content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 40px;
     gap: 5vw;
   }
   
-  .gemini-box, .ai-summary-section {
-    width: 48%;
-    background: linear-gradient(#2b6cb0,#000000);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .gemini-box h2, .ai-summary-section h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: #4a5568;
-  }
-  
-  .gemini-box input {
-    padding: 8px;
-    width: 100%;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: border-color 0.3s;
-  }
-  
-  .gemini-box input:hover {
-    border-color: #3182ce;
-  }
-  
+ 
   /* Image preview section */
   .image-preview {
     margin-top: 20px;
@@ -125,7 +101,7 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    font-size:80px; 
+    font-size: 7vh; 
     color: #ffffff;
     margin-bottom: 40px;
   }
@@ -138,7 +114,7 @@
 /* Define the box container */
 .gemini-box {
   position: relative;
-  width: 55vw;
+  width: 55vw; 
   height: 55vh;
   padding: 50px;
   border-radius: 10px;
@@ -367,6 +343,11 @@
   display: flex;
   justify-content: center;
   gap: 20px;
+}
+
+.adjheight{
+  max-height: 60vh;
+  max-width: 80vw;
 }
 
 .design{
