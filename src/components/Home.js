@@ -3,8 +3,9 @@ import { useDropzone } from "react-dropzone"; // Import useDropzone from react-d
 import Tesseract from "tesseract.js"; // Import Tesseract.js
 import "./Home.css";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import axios from 'axios';
-//hello punit
+import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for routing
+
 const Home = () => {
   const genAI = new GoogleGenerativeAI(
     "AIzaSyAgq0yvib3_NNgeliiaVeSJa8rN4deQUyo"
@@ -13,7 +14,9 @@ const Home = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [extractedText, setExtractedText] = useState(""); // State to hold extracted text
   const [isExtracting, setIsExtracting] = useState(false); // State to track extraction status
-  const [points,setpoints]=useState([]);
+  const [points, setPoints] = useState([]);
+  const [loading, setLoading] = useState(false); // Loading state for job storage
+  const navigate = useNavigate(); // Initialize navigate for programmatic routing
 
   useEffect(() => {
     localStorage.clear();
@@ -58,45 +61,34 @@ const Home = () => {
       });
   };
 
-
-
-
-
-
-  //this for connecting to python backend
+  // this is for connecting to python backend
   useEffect(() => {
     const sendPoints = async () => {
       try {
+        setLoading(true); // Start loading when sending points
         const response = await axios.post(
-          'http://localhost:5000/extract-text',
+          "http://localhost:5000/extract-text",
           { points }, // Send points array as JSON
           {
-            headers: { 'Content-Type': 'application/json' },
+            headers: { "Content-Type": "application/json" },
           }
         );
-        console.log('Text extracted:', response.data);
-        console.log('Points sent:', points);
+        console.log("Text extracted:", response.data);
+        let data = JSON.stringify(response.data);
+        localStorage.setItem("jobs", data);
+        console.log("Points sent:", points);
+        setLoading(false); // Stop loading when jobs are stored
+        navigate("/job"); // Redirect to job page after completion
       } catch (error) {
-        console.error('Error sending points:', error);
+        console.error("Error sending points:", error);
+        setLoading(false); // Stop loading in case of error
       }
     };
-  
-    if (points.length > 0) { // Ensure we only send if points are populated
+
+    if (points.length > 0) {
       sendPoints();
     }
-  }, [points]);
-  
-  
-
-
-
-
-
-
-
-
-
-
+  }, [points, navigate]);
 
   // useEffect to update localStorage when imagePreview changes
   useEffect(() => {
@@ -122,7 +114,7 @@ const Home = () => {
         .split("*")
         .filter((line) => line.trim() !== "");
 
-      setpoints(points);
+      setPoints(points);
 
       // Update state with the list of keywords
       setExtractedText(points);
@@ -139,7 +131,6 @@ const Home = () => {
     <div className="container">
       <h1 className="h1_top">
         <span className="parta">Career</span><span className="partb">Bridge</span>
-        
       </h1>
       <div className="content">
         <div className="button-85">
@@ -172,19 +163,23 @@ const Home = () => {
         </div>
       </div>
       <div className="flexi">
-        <button
-          className="button-901"
-          id="processButton"
-          onClick={generateContent}
-          disabled={isExtracting} // Disable button if extracting text
-        >
-          Generate Summary
-        </button>
-        <button
-          className="button-901"
-        >
-          Find Jobs
-        </button>
+        {loading ? ( // If loading is true, show loading message or animation
+          <div>Loading... Please wait.</div>
+        ) : (
+          <>
+            <button
+              className="button-901"
+              id="processButton"
+              onClick={generateContent}
+              disabled={isExtracting} // Disable button if extracting text
+            >
+              Generate Summary
+            </button>
+            <button className="button-901" onClick={() => navigate("/job")}>
+              Find Jobs
+            </button>
+          </>
+        )}
       </div>
       <br />
     </div>
