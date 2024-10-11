@@ -1,13 +1,12 @@
 // Job.js
 import React, { useEffect, useState } from 'react';
-import { FaStar, FaExternalLinkAlt } from 'react-icons/fa'; // Importing icons from Font Awesome
-import './Job.css'; // If you still need to import custom CSS
+import { FaStar, FaExternalLinkAlt } from 'react-icons/fa'; 
+import './Job.css'; 
 
 const Job = () => {
   const [jobResults, setJobResults] = useState([]);
   const [selectedJobIndex, setSelectedJobIndex] = useState(null);
 
-  // Fetch job data from local storage on component mount
   useEffect(() => {
     const storedJobs = localStorage.getItem("jobs");
     if (storedJobs) {
@@ -16,7 +15,6 @@ const Job = () => {
     }
   }, []);
 
-  // Function to display star rating
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -60,7 +58,6 @@ const Job = () => {
   );
 };
 
-// ReadMoreDescription Component
 const ReadMoreDescription = ({ description, isExpanded, onToggle }) => {
   return (
     <div className="mt-4">
