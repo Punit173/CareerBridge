@@ -18,9 +18,9 @@ const Home = () => {
   const [loading, setLoading] = useState(false); // Loading state for job storage
   const navigate = useNavigate(); // Initialize navigate for programmatic routing
 
-  // useEffect(() => {
-  //   localStorage.clear();
-  // }, []);
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   // Restore image preview from localStorage when component mounts
   useEffect(() => {
