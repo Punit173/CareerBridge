@@ -18,6 +18,7 @@
   
   /* Container for the main content */
   .container {
+    
     width: 100%; 
     max-width: 1200px;
     padding: 20px;
@@ -466,38 +467,11 @@
   height: 100%;          
   z-index: 9999;         
   background-image: url("../images/dribbble.gif"); 
-  background-color: rgba(14, 0, 0, 0.913);  
-  background-size: 30%;
+  background-color: #282828;  
+  background-size: 50%;
   background-repeat: no-repeat;  
   background-position: center;  
+
        
 }
 
-.loadingscreen p{
- font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 10vh;
-  font-weight: 900;
-  text-align: center;
-  color: #ffffff;
-  animation-name: paraanim;
-  animation-duration: 15s;
-  animation-iteration-count: infinite;
- 
-  
-}
-
-@keyframes paraanim{
-  0%{color: #ffffff;}
-  25%{
-    color: #eef13a;
-  }
-  50%{
-    color: white;
-  }
-  75%{
-    color: #eef13a;
-  }
-  100%{
-    color: white;
-  }
-}

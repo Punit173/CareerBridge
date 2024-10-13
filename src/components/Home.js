@@ -163,7 +163,7 @@ const Home = () => {
       </div>
       <div className="flexi">
         {loading ?  ( // If loading is true, show loading message or animation
-          <div className="loadingscreen"><p>Loading... Please wait</p></div>
+          <div className="loadingscreen"></div>
         ):(
           <>
             <button
