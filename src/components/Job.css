@@ -71,7 +71,12 @@
 
 
 .nodataavailable{
-  font-size:13vh;
+  font-size: 8vh;
+  text-align:center;
+  align-items: center;
+  align-content: center;
+  width: 100vw;
+  height: 80vh;
   color: rgb(161, 145, 164);
  
   font-weight: 900;

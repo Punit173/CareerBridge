@@ -162,7 +162,7 @@ const Home = () => {
         </div>
       </div>
       <div className="flexi">
-        {loading ?  ( // If loading is true, show loading message or animation
+        {loading ?  ( 
           <div className="loadingscreen"></div>
         ):(
           <>
@@ -170,7 +170,7 @@ const Home = () => {
               className="button-901"
               id="processButton"
               onClick={generateContent}
-              disabled={isExtracting} // Disable button if extracting text
+              disabled={isExtracting} 
             >
               Generate Summary
             </button>

@@ -33,7 +33,7 @@
   .content {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     margin-bottom: 40px;
     gap: 5vw;
   }
@@ -247,6 +247,8 @@
     rgb(0, 0, 0),
     rgb(108, 15, 126),
     rgb(0, 0, 0),
+    rgb(108, 15, 126),
+    rgb(108, 15, 126),
     rgb(108, 15, 126)
   );
   position: absolute;
@@ -288,22 +290,11 @@
 }
 
 .parta {
-  color: rgb(128, 128, 128);
-  transition: color 0.5s ease; /* Smooth transition for color */
+  color: rgb(255, 255, 255);
 }
 
 .partb {
   color: rgb(77, 19, 90);
-  transition: color 0.5s ease; /* Smooth transition for color */
-}
-
-/* Example hover effect for smooth transition */
-.parta:hover {
-  color: rgb(77, 19, 90); /* Change to .partb color on hover */
-}
-
-.partb:hover {
-  color: rgb(128, 128, 128); /* Change to .parta color on hover */
 }
 
 
@@ -401,8 +392,6 @@
 .design{
   background-color: rgb(20, 19, 19);
   color: rgb(113, 43, 102);
-
-  
   margin-bottom: 13px;
   padding: 15px;
   border-radius: 15px;
@@ -453,6 +442,12 @@
 @media (max-width:1090px){
   .adjheight{
     width: 100%;
+  }
+}
+
+@media (max-width:1000px){
+  .content{
+    flex-wrap: wrap;
   }
 }
 
