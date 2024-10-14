@@ -14,7 +14,6 @@ const Home = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [extractedText, setExtractedText] = useState(""); // State to hold extracted text
   const [isExtracting, setIsExtracting] = useState(false); // State to track extraction status
-  const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
   const [points, setPoints] = useState([]);
   const [loading, setLoading] = useState(false); // Loading state for job storage
   const navigate = useNavigate(); // Initialize navigate for programmatic routing
@@ -62,6 +61,7 @@ const Home = () => {
       });
   };
 
+  // this is for connecting to python backend
   useEffect(() => {
     const sendPoints = async () => {
       try {
@@ -74,11 +74,9 @@ const Home = () => {
           }
         );
         console.log("Text extracted:", response.data);
-        
-        const jobsData = JSON.stringify(response.data); // Convert to string
-        localStorage.setItem("jobs", jobsData); // Store in localStorage
-        console.log("Jobs successfully stored in localStorage");
-  
+        let data = JSON.stringify(response.data);
+        localStorage.setItem("jobs", data);
+        console.log("Points sent:", points);
         setLoading(false); // Stop loading when jobs are stored
         navigate("/job"); // Redirect to job page after completion
       } catch (error) {
@@ -86,12 +84,11 @@ const Home = () => {
         setLoading(false); // Stop loading in case of error
       }
     };
-  
+
     if (points.length > 0) {
       sendPoints();
     }
   }, [points, navigate]);
-  
 
   // useEffect to update localStorage when imagePreview changes
   useEffect(() => {
@@ -103,32 +100,29 @@ const Home = () => {
   }, [imagePreview]);
 
   const generateContent = async () => {
-    setIsGeneratingSummary(true);
-    const prompt = `give the title of jobs which this resume can apply for (just only the keywords no desc no extra points nothing just keywords) any 5 don't give numbering only asterisks per point and no desc
-      ${extractedText}`;
+    const prompt = 
+      `give the title of jobs which this resume can apply for (just only the keywords no desc no extra points nothing just keywords) any 5 don't give numbering only asteriks per point and no desc
+      ${extractedText}`
+    ;
+
     try {
       const result = await model.generateContent(prompt);
-      const responseText = await result.response.text(); // Properly await the response
-  
+      const responseText = result.response.text(); // Get the generated response
+
       // Split the response into lines and filter out empty lines
-      const generatedPoints = responseText
+      const points = responseText
         .split("*")
-        .filter((line) => line.trim() !== ""); // Filter empty lines
-  
-      setPoints(generatedPoints); // Update the points state
-      setExtractedText(generatedPoints); // Store the result in extractedText too
-  
-      // Store generated points in localStorage
-      const pointsToStore = JSON.stringify(generatedPoints);
-      localStorage.setItem("jobs", pointsToStore); // Store jobs in local storage
-      console.log("Jobs stored in localStorage:", pointsToStore); // Debugging console log
+        .filter((line) => line.trim() !== "");
+
+      setPoints(points);
+
+      // Update state with the list of keywords
+      setExtractedText(points);
+      console.log(points);
     } catch (error) {
       console.error("Error generating content:", error);
-    } finally {
-      setIsGeneratingSummary(false); // Hide loader after generation is done
     }
   };
-  
 
   // Set up the dropzone
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
@@ -136,8 +130,7 @@ const Home = () => {
   return (
     <div className="container">
       <h1 className="h1_top">
-        <span className="parta">Career</span>
-        <span className="partb">Bridge</span>
+        <span className="parta">Career</span><span className="partb">Bridge</span>
       </h1>
       <div className="content">
         <div className="button-85 adjheight">
@@ -168,22 +161,16 @@ const Home = () => {
           )}
         </div>
       </div>
-
       <div className="flexi">
-        {isExtracting && (
+        {loading ?  ( 
           <div className="loadingscreen"></div>
-        )}
-
-        {isGeneratingSummary && (
-          <div className="loader"></div> // The loader will be displayed here
-        )}
-        {!isExtracting && !isGeneratingSummary && (
+        ):(
           <>
             <button
               className="button-901"
               id="processButton"
               onClick={generateContent}
-              disabled={isExtracting} // Disable if extracting
+              disabled={isExtracting} 
             >
               Generate Summary
             </button>
