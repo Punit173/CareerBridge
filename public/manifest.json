@@ -1,19 +1,19 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Career Bridge",
+  "name": "Career Bridge",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyyRC-1Y7n1jjJDy75NoYMDTWItdsvgE2_6w&s",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyyRC-1Y7n1jjJDy75NoYMDTWItdsvgE2_6w&s",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyyRC-1Y7n1jjJDy75NoYMDTWItdsvgE2_6w&s",
       "type": "image/png",
       "sizes": "512x512"
     }
