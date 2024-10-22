@@ -41,7 +41,7 @@ const Job = () => {
     <div className="p-10 md:p-8 lg:p-12">
       <h1 className="h1_top">
         <span className="parta">Job</span>
-        <span className="partb">Listings</span>
+        <span className="partb">Listing</span>
       </h1>
       <div className="">
         {jobResults.length > 0 ? (
