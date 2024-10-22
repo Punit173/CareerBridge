@@ -162,6 +162,10 @@ const Home = () => {
         </div>
       </div>
       <div className="flexi">
+
+          {isExtracting?(<div className="loader"></div>):(
+            <>
+
         {loading ?  ( 
           <div className="loadingscreen"></div>
         ):(
@@ -179,6 +183,7 @@ const Home = () => {
             </button>
           </>
         )}
+       </> )}
       </div>
       <br />
     </div>
