@@ -71,14 +71,9 @@
 
 
 .nodataavailable{
-  font-size: 8vh;
-  text-align:center;
-  align-items: center;
-  align-content: center;
-  width: 100vw;
-  height: 80vh;
-  color: rgb(161, 145, 164);
- 
+  font-size: 5vh;
+  /* color: rgb(161, 145, 164); */
+  /* color: yellow; */
   font-weight: 900;
 
 }
