@@ -128,7 +128,7 @@ const Home = () => {
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
-    <div className="container">
+    <div className="container p-6">
       <h1 className="h1_top">
         <span className="parta">Career</span><span className="partb">Bridge</span>
       </h1>
