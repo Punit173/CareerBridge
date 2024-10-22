@@ -134,7 +134,7 @@ const Home = () => {
       </h1>
       <div className="content p-6">
         <div className="button-85 adjheight">
-          <h2>Image Uploader</h2>
+          {/* <h2>Image Uploader</h2> */}
           <br />
           <div {...getRootProps({ className: "dropzone" })}>
             <input {...getInputProps()} />
