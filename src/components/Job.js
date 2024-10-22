@@ -46,7 +46,7 @@ const Job = () => {
       <div className="">
         {jobResults.length > 0 ? (
           jobResults.map((job, index) => (
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               <div
               key={index}
               className={`bg-black-900 border-8 border-purple-800 rounded-xl p-6 transition-transform duration-300 ${
