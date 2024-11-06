@@ -67,7 +67,7 @@ const Home = () => {
       try {
         setLoading(true); // Start loading when sending points
         const response = await axios.post(
-          "https://fdsbackend.onrender.com/extract-text",
+          "https://back-serv-1-efqc.onrender.com/extract-text",
           { points }, // Send points array as JSON
           {
             headers: { "Content-Type": "application/json" },
@@ -130,7 +130,7 @@ const Home = () => {
   return (
     <div className="container ">
       <h1 className="h1_top">
-        <span className="parta">Career</span><span className="partb">Bridge</span>
+        <span className="parta">Job</span><span className="partb">Connect</span>
       </h1>
       <div className="content p-6">
         <div className="button-85 adjheight">
