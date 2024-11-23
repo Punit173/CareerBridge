@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate for routin
 
 const Home = () => {
   const genAI = new GoogleGenerativeAI(
-    "AIzaSyAgq0yvib3_NNgeliiaVeSJa8rN4deQUyo"
+    "AIzaSyDlRA5b4tJrzuts_GpdwyPbfJiODBGiLnQ"
   ); // Use your actual API key
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const [imagePreview, setImagePreview] = useState(null);
